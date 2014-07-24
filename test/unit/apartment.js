@@ -19,7 +19,34 @@ describe('Apartment', function(){
   });
   beforeEach(function(done){
     global.mongodb.collection('apartments').remove(function(){
-      done();
+      var a1 = new Apartment('A1');
+      var a2 = new Apartment('A2');
+      var a3 = new Apartment('A3');
+      var r1 = new Room('bedroom', '10', '10');
+      var r2 = new Room('living room', '10', '10');
+      var r3 = new Room('bathroom', '10', '10');
+      var r4 = new Room('bedroom', '10', '10');
+      var r5 = new Room('living room', '10', '10');
+      var r6 = new Room('bathroom', '10', '10');
+      var r7 = new Room('bedroom', '10', '10');
+      var r8 = new Room('living room', '10', '10');
+      var r9 = new Room('bathroom', '10', '10');
+      var bob = new Renter('bob', '35', 'm', 'social worker');
+      var jim = new Renter('jim', '19', 'm', 'movie star');
+      var sue = new Renter('sue', '27', 'f', 'coder');
+      a1.rooms.push(r1, r2, r3);
+      a1.renters.push(bob);
+      a2.rooms.push(r4, r5, r6);
+      a2.renters.push(jim);
+      a3.rooms.push(r7, r8, r9);
+      a3.renters.push(sue);
+      a1.save(function(){
+        a2.save(function(){
+          a3.save(function(){
+            done();
+          });
+        });
+      });
     });
   });
 
@@ -156,6 +183,14 @@ describe('Apartment', function(){
       a1.renters.push(bob);
       a1.save(function(){
         expect(a1._id).to.be.instanceof(Mongo.ObjectID);
+        done();
+      });
+    });
+  });
+  describe('.find', function(){
+    it('should find all apartments in database', function(done){
+      Apartment.find({}, function(apts){
+        expect(apts).to.have.length(3);
         done();
       });
     });

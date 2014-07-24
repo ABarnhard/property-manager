@@ -65,4 +65,10 @@ Apartment.prototype.save = function(cb){
   });
 };
 
+Apartment.find = function(query, cb){
+  cApt.find(query).toArray(function(err, apts){
+    cb(apts);
+  });
+};
+
 module.exports = Apartment;
