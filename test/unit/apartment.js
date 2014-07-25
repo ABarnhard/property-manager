@@ -224,9 +224,17 @@ describe('Apartment', function(){
     });
   });
   describe('.area', function(){
-    it('should return the total area for all apartments', function(done){
+    it('should return the total area of all apartments', function(done){
       Apartment.area(function(area){
         expect(area).to.equal(900);
+        done();
+      });
+    });
+  });
+  describe('.cost', function(){
+    it('should return the total cost of all apartments', function(done){
+      Apartment.cost(function(cost){
+        expect(cost).to.equal(4500);
         done();
       });
     });

@@ -103,6 +103,16 @@ Apartment.area = function(cb){
   });
 };
 
+Apartment.cost = function(cb){
+  Apartment.find({}, function(apts){
+    var sum = 0;
+    for(var i = 0; i < apts.length; i++){
+      sum += apts[i].cost();
+    }
+    cb(sum);
+  });
+};
+
 // HELPER FUNCTIONS //
 
 function reProto(apt){
