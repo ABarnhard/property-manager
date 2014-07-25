@@ -239,6 +239,14 @@ describe('Apartment', function(){
       });
     });
   });
+  describe('.tenants', function(){
+    it('should return the total cost of all apartments', function(done){
+      Apartment.tenants(function(tenants){
+        expect(tenants).to.equal(3);
+        done();
+      });
+    });
+  });
 
 });
 
