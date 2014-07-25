@@ -211,6 +211,18 @@ describe('Apartment', function(){
       });
     });
   });
+  describe('.deleteById', function(){
+    it('should remove 1 apartment in database by it\'s id', function(done){
+      Apartment.find({}, function(apts){
+        Apartment.deleteById(apts[0]._id, function(){
+          Apartment.find({}, function(apts2){
+            expect(apts2).to.have.length(2);
+            done();
+          });
+        });
+      });
+    });
+  });
 
 });
 

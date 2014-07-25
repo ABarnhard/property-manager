@@ -85,6 +85,14 @@ Apartment.findById = function(id, cb){
   });
 };
 
+Apartment.deleteById = function(id, cb){
+  //console.log(id);
+  var query = {_id:id};
+  cApt.remove(query, function(){
+    cb();
+  });
+};
+
 // HELPER FUNCTIONS //
 
 function reProto(apt){
