@@ -200,10 +200,7 @@ describe('Apartment', function(){
       Apartment.find({}, function(apts){
         //console.log(apts[0].unit);
         Apartment.findById(apts[0]._id, function(apt){
-          // TODO Ask Chyld about WTF is going on here
-          // the _id returned from the check isn't the same type
-          // returned from the search
-          //expect(apt._id).to.equal(id);
+          expect(apt._id).to.eql(apts[0]._id);
           expect(apt.unit).to.equal('A1');
           expect(apt).to.be.instanceof(Apartment);
           done();
