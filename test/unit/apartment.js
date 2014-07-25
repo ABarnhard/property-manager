@@ -223,6 +223,14 @@ describe('Apartment', function(){
       });
     });
   });
+  describe('.area', function(){
+    it('should return the total area for all apartments', function(done){
+      Apartment.area(function(area){
+        expect(area).to.equal(900);
+        done();
+      });
+    });
+  });
 
 });
 
