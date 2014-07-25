@@ -247,6 +247,14 @@ describe('Apartment', function(){
       });
     });
   });
+  describe('.revenue', function(){
+    it('should return the total revenue from all occupied apartments', function(done){
+      Apartment.revenue(function(revenue){
+        expect(revenue).to.equal(4500);
+        done();
+      });
+    });
+  });
 
 });
 
